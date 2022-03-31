@@ -9,6 +9,12 @@
 
 # 问题记录
 
+# 安装包
+- npm install body-parser (post相关)
+- npm install express 
+- npm install mysql (数据库依赖)
+- npm install mysql2 
+- npm i sequelize (mysql)
 # BUG记录
 Q1: node.js 连接mysql 出现如下报错
 ```
