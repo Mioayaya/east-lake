@@ -1,12 +1,13 @@
-// @login & register
 const express = require("express");
 const router = express.Router();
+const User = require("../../modles/Users");
 
-// $route GET api/users/test
-// @desc 返回请求的json数据
-// @access public
 router.get("/test",(req,res) => {
-    res.json({msg:"login works!"});
+    res.json({code:1})
+})
+
+router.post("/register",(req,res) => {
+    console.log(req.body)
 })
 
 module.exports = router;
