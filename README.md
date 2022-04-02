@@ -14,7 +14,10 @@
 - npm install express 
 - npm install mysql (数据库依赖)
 - npm install mysql2 
-- npm i sequelize (mysql)
+- npm install sequelize (mysql)
+- npm install bcryptjs -s 对密码加密
+- npm install china-time -s 返回北京时间
+- npm install jsonwebtoken 安装jwt
 # BUG记录
 Q1: node.js 连接mysql 出现如下报错
 ```
@@ -42,3 +45,8 @@ A: 原因：
 # 日志
 - 2022/03/30
   - 项目初始化
+- 2022/04/02
+  - node.js后端服务搭建
+  - node.js使用sequelize操作数据库实现用户注册登录
+  - 使用hash对用户密码加密
+  - 登录成功后,后端返回用户json数据
