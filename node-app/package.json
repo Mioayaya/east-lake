@@ -4,8 +4,8 @@
   "description": "restful api",
   "main": "server.js",
   "scripts": {
-    "start": "node server.js",
-    "server": "nodemon server.js"
+    "start": "node nodeProxy.js",
+    "server": "nodemon nodeProxy.js"
   },
   "author": "raften",
   "license": "ISC",
@@ -17,6 +17,7 @@
     "jsonwebtoken": "^8.5.1",
     "mysql": "^2.18.1",
     "mysql2": "^2.3.3",
+    "request": "^2.88.2",
     "sequelize": "^6.17.0",
     "thenjs": "^2.1.0"
   }

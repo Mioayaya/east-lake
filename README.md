@@ -8,16 +8,21 @@
 # 运行方式
 
 # 问题记录
+- Q1: 如何实现前后端的数据交互?  
 
 # 安装包
-- npm install body-parser (post相关)
-- npm install express 
-- npm install mysql (数据库依赖)
-- npm install mysql2 
-- npm install sequelize (mysql)
-- npm install bcryptjs -s 对密码加密
-- npm install china-time -s 返回北京时间
-- npm install jsonwebtoken 安装jwt
+- node.js
+  - npm install body-parser (post相关)
+  - npm install express 
+  - npm install mysql (数据库依赖)
+  - npm install mysql2 
+  - npm install sequelize (mysql)
+  - npm install bcryptjs -s 对密码加密
+  - npm install china-time -s 返回北京时间
+  - npm install jsonwebtoken 安装jwt
+- vue3
+  - npm install axios 
+  - npm install element-plus --save 安装element-plus
 # BUG记录
 Q1: node.js 连接mysql 出现如下报错
 ```
@@ -50,3 +55,10 @@ A: 原因：
   - node.js使用sequelize操作数据库实现用户注册登录
   - 使用hash对用户密码加密
   - 登录成功后,后端返回用户json数据
+- 2022/04/03
+  - 导航栏的实现
+- 2022/04/04
+  - 登录 注册页面
+  - 遇到问题: 未解决前后端跨域问题
+- 2022/04/05
+  - 实现轮播图以及签到页面、仅前端
