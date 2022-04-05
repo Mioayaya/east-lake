@@ -14,5 +14,5 @@ app.use(bodyParser.json());
 app.use("/api/v1",Users);
 
 app.listen(5000,() => {
-    console.log("Server is running on port 50000...");
+    console.log("Server is running on port 5000...");
 })
