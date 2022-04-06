@@ -10,19 +10,20 @@
         </div>
         <!-- 签到 -->
         <div class="sign">
-                <div class="top">
-                    <span>欢迎回来,</span>
-                    <span class="username">{{ data.username }}</span>
-                </div>
-                <div class="content">
-                    <span class="month">{{ my_date.month }}</span>
-                    <span class="day">{{ my_date.day }}</span>
-                    <span class="week">星期{{ my_date.week }}</span>
-                </div>
-                <div class="bottom">
-                    <button type="button" class="btn btn-primary" @click="test">点击打卡</button>
-                </div>
+            <div class="top">
+                <span>欢迎回来,</span>
+                <span class="username">{{ data.username }}</span>
+            </div>
+            <div class="content">
+                <span class="month">{{ my_date.month }}</span>
+                <span class="day">{{ my_date.day }}</span>
+                <span class="week">星期{{ my_date.week }}</span>
+            </div>
+            <div class="bottom">
+                <button type="button" class="btn btn-primary" @click="test">点击打卡</button>
+            </div>
         </div>
+
     </div>
     
 </template>
@@ -47,10 +48,10 @@ export default {
         }
         const images = [
             { pic:require('../../assets/img/home-1.jpg') },
-            { pic:require('../../assets/img/home-2.jpg') },
             { pic:require('../../assets/img/home-3.jpg') },
-            { pic:require('../../assets/img/home-1.jpg') },
-            { pic:require('../../assets/img/home-1.jpg') },
+            { pic:require('../../assets/img/home-4.jpg') },
+            { pic:require('../../assets/img/home-5.jpg') },
+            { pic:require('../../assets/img/home-2.jpg') },
         ]
         const date = new Date();
         const my_date = {
