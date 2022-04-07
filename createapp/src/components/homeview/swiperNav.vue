@@ -10,20 +10,56 @@
         </div>
         <!-- 签到 -->
         <div class="sign">
-            <div class="top">
-                <span>欢迎回来,</span>
-                <span class="username">{{ data.username }}</span>
+            <div class="unSign" v-if="data.state">
+                <div class="top">
+                    <span>欢迎回来,</span>
+                    <span class="username">{{ data.username }}</span>
+                </div>
+                <div class="content">
+                    <span class="month">{{ my_date.month }}</span>
+                    <span class="day">{{ my_date.day }}</span>
+                    <span class="week">星期{{ my_date.week }}</span>
+                </div>
+                <div class="bottom">
+                    <button type="button" class="btn btn-primary" @click="signIn()">点击打卡</button>
+                </div>                
             </div>
-            <div class="content">
-                <span class="month">{{ my_date.month }}</span>
-                <span class="day">{{ my_date.day }}</span>
-                <span class="week">星期{{ my_date.week }}</span>
-            </div>
-            <div class="bottom">
-                <button type="button" class="btn btn-primary" @click="test">点击打卡</button>
+            
+            <div class="signIn" v-if="!data.state">
+                <div class="top">
+                    <span class="username">{{ data.username }}</span>
+                    <span>,的运势</span>
+                </div>
+                <div class="fortune"> 
+                    <span class="text">{{'§ '+nowSign.fortune+' §'}}</span>
+                </div>
+                <div class="events">
+                    <div class="lucky">
+                        <div class="event1">
+                            <span class="YI">宜: </span>
+                            <span class="event">{{nowSign.lucky1}}</span>
+                        </div>
+                        <div class="event2">
+                            <span class="YI">宜: </span>
+                            <span class="event">{{nowSign.lucky2}}</span>
+                        </div>
+                    </div>
+                    <div class="bad">
+                        <div class="event1">
+                            <span class="YI">忌: </span>
+                            <span class="event">{{nowSign.bad1}}</span>
+                        </div>
+                        <div class="event2">
+                            <span class="YI">忌: </span>
+                            <span class="event">{{nowSign.bad2}}</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="bottom">
+                    <span>你已经在康杯连续打卡了 1 天</span>
+                </div>  
             </div>
         </div>
-
     </div>
     
 </template>
@@ -33,8 +69,10 @@ import { Swiper, SwiperSlide } from "swiper/vue";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
-import { Pagination } from 'swiper'
+import { Pagination } from 'swiper';
 import { Navigation } from "swiper";
+import {reactive} from 'vue';
+import axios from 'axios';
 
 export default {
     name:'SwiperNav',
@@ -43,9 +81,40 @@ export default {
         SwiperSlide,
     },
     setup() {
-        const data = {
-            username:'root',
+        // 签到数据
+        const signData = {
+            fortune:['大吉','吉','小吉','中平','平','大凶','凶','小凶'],
+            luckyEvents:[
+                '刷题',
+                '装逼',
+                '学习',
+                '学习珂朵莉',
+                '看番',
+                '考试',
+                '出门',
+            ],
+            badEvents:[
+                '继续完成未完成的作业',
+                '旅游',
+                '偷偷睡觉',
+                '玩游戏',
+                '写作文',
+            ],
         }
+        // 随机抽取的签到数据
+        const nowSign = {
+            fortune:'',
+            lucky1:'',
+            lucky2:'',
+            bad1:'',
+            bad2:'',
+        }
+        // 用户数据
+        const data = reactive({
+            username:'root',
+            state:true,
+        })
+        // 轮播图片
         const images = [
             { pic:require('../../assets/img/home-1.jpg') },
             { pic:require('../../assets/img/home-3.jpg') },
@@ -53,6 +122,7 @@ export default {
             { pic:require('../../assets/img/home-5.jpg') },
             { pic:require('../../assets/img/home-2.jpg') },
         ]
+        // 日期
         const date = new Date();
         const my_date = {
             month:'',
@@ -68,7 +138,46 @@ export default {
             my_date.day = my_date.day.toString();
             my_date.day = '0' + my_date.day;
         }
-        
+
+        // 签到抽取随机数据
+        getSign();
+        function getSign() {
+            let luckNum = getnumber(signData.fortune.length);
+            // 存入输出数据中
+            nowSign.fortune = signData.fortune[luckNum];
+            // console.log(nowSign.fortune)
+            // 获取随机事件
+            let luck1 = getnumber(signData.luckyEvents.length);
+            let luck2 = getnumber(signData.luckyEvents.length);
+            // 防止事件重复
+            if(luck1===luck2){
+                luck2 = getnumber(signData.luckyEvents.length);
+            }
+            nowSign.lucky1 = signData.luckyEvents[luck1];
+            nowSign.lucky2 = signData.luckyEvents[luck2];
+            
+            // 获取忌讳事件
+            let bad1 = getnumber(signData.badEvents.length);
+            let bad2 = getnumber(signData.badEvents.length);
+            // 防止事件重复
+            if(bad1===bad2){
+                bad2 = getnumber(signData.badEvents.length);
+            }
+            nowSign.bad1 = signData.badEvents[bad1];
+            nowSign.bad2 = signData.badEvents[bad2];
+
+            console.log(nowSign);
+
+            function getnumber(x) {
+                let num = Math.random();
+                num = num*100;          //变成1~100的数
+                num = Math.floor(num);  // 向下取整
+                num = num % x;          // 按需求随机
+                return num;
+            }
+        }
+
+
         changeNumber();
         // 将数字变成汉字
         function changeNumber() {
@@ -101,12 +210,20 @@ export default {
         function test() {
             console.log(my_date);
         }
+        // 签到
+        function signIn() {
+            // console.log(axios.get('http://localhost:5000'));
+            data.state = !data.state ;
+        }
         return {
             modules: [Navigation,Pagination],
+            signData,
+            nowSign,
             images,
             data,
             my_date,
             test,
+            signIn,
         };
     },
 }
@@ -210,7 +327,34 @@ export default {
             margin-top: 30px;
             text-align: center;
         }
+        .signIn {
+            .fortune {
+                margin-left: -30px;
+                font-size: 60px;
+                font-weight: bold;
+                margin-top: 0px;
+                color: #5eb95e !important;
+                padding-left: 30px;
+                text-align: center;
+            }
+            .events {
+                display: flex;
+                justify-content: space-between;
+                .event1 {
+                    margin-bottom: 10px;
+                }
+                .YI {
+                    box-sizing: border-box;
+                    font-weight: bold;
+                }
+                .lucky {
+                    color: #e74c3c !important;
+                }
+            }
+        }
     }
+
+
 }
 
 
