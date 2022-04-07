@@ -37,6 +37,7 @@
 import { reactive, ref } from '@vue/reactivity'
 import { onMounted } from '@vue/runtime-core';
 import { getTest } from '@/api';
+import axios from 'axios';
 
 export default {
     name:'LoginBody',
@@ -50,6 +51,9 @@ export default {
             email:'',
             password:'',
         })
+        const getdata = reactive({
+
+        })
         const rules = reactive({
             email:[{ required:true,message:"邮箱不能为空",trigger:"blur" }],
             password:[{ required:true,message:"密码不能为空",trigger:"blur" }]
@@ -58,6 +62,8 @@ export default {
             if (!formEl) return
             formEl.validate((valid) => {
                 if (valid) {
+                    console.log(axios.post('http://localhost:5000/api/v1/login',signinForm));
+                    
                     console.log('submit!')
                 } else {
                     console.log('error submit!')
