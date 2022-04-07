@@ -6,11 +6,10 @@
         <div class="content">
             <div class="left">
                 <div class="top">
-                    <span class="describe">言训</span>
+                    <span class="describe">体训</span>
                 </div>
                 <div class="list">
-                    <div class="listitem" v-for="(item,i) in listdata.left" :key="i">
-                        <br v-if="(i+1)%4===0">
+                    <div class="listitem" v-for="(item,i) in listdata.Sport" :key="i">
                         <img :src="item.img" alt="">
                         <div class="text">
                             <span class="title">{{item.title}}</span>
@@ -22,10 +21,10 @@
             </div>
             <div class="middle">
                 <div class="top">
-                    <span class="describe">middle</span>
+                    <span class="describe">言训</span>
                 </div>
                 <div class="list">
-                    <div class="listitem" v-for="(item,i) in listdata.left" :key="i">
+                    <div class="listitem" v-for="(item,i) in listdata.Conversion" :key="i">
                         <img :src="item.img" alt="">
                         <div class="text">
                             <span class="title">{{item.title}}</span>
@@ -37,10 +36,10 @@
             </div>
             <div class="right">
                 <div class="top">
-                    <span class="describe">right</span>
+                    <span class="describe">心训</span>
                 </div>
                 <div class="list">
-                    <div class="listitem" v-for="(item,i) in listdata.left" :key="i">
+                    <div class="listitem" v-for="(item,i) in listdata.Heart" :key="i">
                         <img :src="item.img" alt="">
                         <div class="text">
                             <span class="title">{{item.title}}</span>
@@ -60,15 +59,23 @@ export default {
     name:'CourseView',
     setup() {
         const listdata = {
-            left: [
-                { img:require('../../assets/logo.png'),title:'标题',author:'作者',describe:'' },
-                { img:require('../../assets/logo.png'),title:'标题',author:'作者',describe:'' },
-                { img:require('../../assets/logo.png'),title:'标题',author:'作者',describe:'' },
-                { img:require('../../assets/logo.png'),title:'标题',author:'作者',describe:'' },
-                { img:require('../../assets/logo.png'),title:'标题',author:'作者',describe:'' },
+            Conversion: [
+                { img:require('../../assets/img/con-1.jpg'),title:'传统文化思辨会',author:'',describe:'' },
+                { img:require('../../assets/img/con-2.jpg'),title:'法律辩论赛',author:'',describe:'' },
             ],
-            middle:{},
-            right: {},
+            Heart: [
+                { img:require('../../assets/img/heart-1.jpg'),title:'心理漫谈',author:'',describe:'' },
+                { img:require('../../assets/img/heart-2.jpg'),title:'法律科普',author:'',describe:'' },
+            ],
+            Sport: [
+                { img:require('../../assets/img/sport-Nong.jpg'),title:'农作园',author:'',describe:'' },
+                { img:require('../../assets/img/sport-tea.jpg'),title:'中国茶谣馆',author:'',describe:'' },
+                { img:require('../../assets/img/sport-BCY.jpg'),title:'百草园',author:'',describe:'' },
+                { img:require('../../assets/img/sport-ZMKJG.jpg'),title:'竹木科技馆',author:'',describe:'' },
+                { img:require('../../assets/img/sport-PYC.jpg'),title:'攀岩场',author:'',describe:'' },
+                { img:require('../../assets//img/sport-TYG.jpg'),title:'体育馆',author:'',describe:'' },
+                { img:require('../../assets/img/sport-LQC.jpg'),title:'篮球场',author:'',describe:'' },
+            ],
         }
 
         return { listdata ,}
@@ -89,7 +96,7 @@ export default {
         .left {
             width: 1130px;
             height: auto;
-            background-color: white;
+            background-color: #fff;
             margin-bottom: 30px;
             .top {
                 height: 50px;
@@ -149,18 +156,26 @@ export default {
 
 .list {
     display: flex;
+    flex-wrap: wrap;
     margin-left: 40px;
     margin-bottom: 20px;
+    margin-top: 10px;
     .listitem {
-        margin-right: 20px;
+        margin-right: 30px;
+        margin-bottom: 20px;
         display: flex;
+        flex-direction: column;
+        background-color: #fff;
         img {
             width: 234px;
             height: 135px;
+            border-radius: 5px;
         }
         .text {
             display: flex;
             flex-direction: column;
+            margin-top: 15px;
+            margin-left: 15px;
             .title {
                 font-size: 16px;
                 font-weight: 600;
