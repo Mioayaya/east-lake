@@ -9,6 +9,28 @@
 
 # 问题记录
 - Q1: 如何实现前后端的数据交互?  
+  - A1: 解决跨域问题
+  - 在node.js中 server.js中加入以下代码
+  ```javascript
+    // 设置跨域访问
+    app.all("*",function(req,res,next){
+        //设置允许跨域的域名，*代表允许任意域名跨域
+        res.header("Access-Control-Allow-Origin","*");
+        //允许的header类型
+        res.header("Access-Control-Allow-Headers","content-type");
+        //跨域允许的请求方式 
+        res.header("Access-Control-Allow-Methods","DELETE,PUT,POST,GET,OPTIONS");
+        if (req.method.toLowerCase() == 'options')
+            res.send(200);  //让options尝试请求快速结束
+        else
+            next();
+    })
+  ```
+  - 在vue中 vue.config.js 加入以下代码
+  - devServer: { proxy: 'http://localhost:5000' }
+- Q2: 使用v-if后 click事件后 组件并没有消失?
+  - A2: 使用reactive() 绑定数据即可  
+- 
 
 # 安装包
 - node.js
@@ -62,3 +84,7 @@ A: 原因：
   - 遇到问题: 未解决前后端跨域问题
 - 2022/04/05
   - 实现轮播图以及签到页面、仅前端
+- 2022/04/07
+  - 签到打卡实现
+  - 课程推荐
+  - 解决跨域问题
