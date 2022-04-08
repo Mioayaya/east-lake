@@ -166,7 +166,7 @@ export default {
             nowSign.bad1 = signData.badEvents[bad1];
             nowSign.bad2 = signData.badEvents[bad2];
 
-            console.log(nowSign);
+            // console.log(nowSign);
 
             function getnumber(x) {
                 let num = Math.random();
@@ -252,7 +252,7 @@ export default {
             .swiper-slide {
                 text-align: center;
                 font-size: 18px;
-                background: rgb(255, 0, 0);
+                background: #fff;
                 display: -webkit-box;
                 display: -ms-flexbox;
                 display: -webkit-flex;
