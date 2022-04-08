@@ -38,14 +38,15 @@ import { reactive, ref } from '@vue/reactivity'
 import { onMounted } from '@vue/runtime-core';
 import { getTest } from '@/api';
 import axios from 'axios';
-
+import { useRouter, useRoute } from 'vue-router'
 export default {
     name:'LoginBody',
     components:{
         
     },
     setup() {
-
+        const router = useRouter();
+        const route = useRoute();
         const userSigninRef = ref();
         const signinForm = reactive({
             email:'',
@@ -62,8 +63,14 @@ export default {
             if (!formEl) return
             formEl.validate((valid) => {
                 if (valid) {
-                    console.log(axios.post('http://localhost:5000/api/v1/login',signinForm));
-                    
+                    axios.post('http://localhost:5000/api/v1/login',signinForm).then( res => {
+                        console.log('登录成功');
+                        console.log(res);
+                        let u_id = res.data.user.id;
+                        // console.log(u_id);
+                        router.push({path:'/',query:{id:u_id}});
+                        // router.push('/');
+                    })
                     console.log('submit!')
                 } else {
                     console.log('error submit!')

@@ -44,9 +44,13 @@
 import { reactive, ref } from '@vue/reactivity'
 import axios from 'axios'
 import { getCurrentInstance, onBeforeMount} from "vue";
+import { useRouter, useRoute } from 'vue-router'
+
 export default {
     name:'RegisterBody',
     setup() {
+        const router = useRouter();
+        const route = useRoute();
         const validatePass = (rules, value, callback) => {
             if (value === '') {
                 callback(new Error('请输入密码'))
@@ -83,10 +87,11 @@ export default {
             if (!formEl) return
             formEl.validate((valid) => {
                 if (valid) {
-                    // axios.post("/api/v1/register",signupForm).then( res => {
-                    //         console.log('注册成功');
-                    //         console.log(res);
-                    //     })
+                    axios.post("http://localhost:5000/api/v1/register",signupForm).then( res => {
+                        console.log('注册成功');
+                        console.log(res);
+                        router.push('/loginview');
+                    })
                     console.log('submit!')
                 } else {
                     console.log('error submit!')
