@@ -65,4 +65,20 @@ router.post("/login",(req,res) => {
     })
 })
 
+// 查询
+router.get("/getId/:id",(req,res) => {
+    // 测试
+    console.log(req.params);
+    const id = req.params.id;
+    User.findOne({ where:{id:id}}).then( user => {
+        // 用户存在
+        if(user) {
+            res.json({msg:"查询成功",user});
+        }else {
+            res.send("用户不存在");
+        }
+    })
+    // res.json({msg:id});
+})
+
 module.exports = router;
