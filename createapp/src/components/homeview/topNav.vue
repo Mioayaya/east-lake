@@ -2,7 +2,7 @@
     <div class="topNav">
         <!-- 标题栏左侧 -->
         <div class="topLeft">
-            <router-link :to="{ path:'/' }">
+            <router-link :to="{ path:'/',query:{userid:userdata.id} }">
                 <a class="navbar-brand">康杯研学</a>
             </router-link>
             <div class="iteam">
@@ -24,7 +24,11 @@
                 </div>
                 <div class="avatar">
                     <!-- 默认未登录的头像 -->
-                    <router-link :to="{ path:'/loginview'}">
+                    <router-link :to="{ path:'/loginview'}" v-if="!userid">
+                        <img :src="img" alt="用户头像">
+                    </router-link>
+                    <!-- 登录后 -->
+                    <router-link :to="{path:'/personview',query:{userid:userdata.id}}" v-if="userid">
                         <img :src="img" alt="用户头像">
                     </router-link>
                 </div>
@@ -38,12 +42,18 @@
 </template>
 
 <script>
+import { reactive } from '@vue/reactivity';
 export default {
     name:'TopNav',
-    setup() {
+    props:['userid'],
+    setup(props) {
         let img = 'https://cdn.luogu.com.cn/upload/usericon/1.png';
-
-        return { img, }
+        console.log(`topNav-props.userid: ${props.userid}`);
+        const userdata = reactive({
+            id:0,
+        })
+        userdata.id = props.userid;
+        return { img,userdata, }
     }
 }
 
