@@ -1,24 +1,27 @@
 <template>
     <div class="person">
-        <top-nav :userid="userdata.id"></top-nav>
-        个人页面
+        <top-nav></top-nav>
+        <person-top></person-top>
+        <person-nav></person-nav>
     </div>
 </template>
 
 <script>
-import { reactive } from '@vue/reactivity';
-import { useRoute } from 'vue-router';
 import TopNav from '@/components/homeview/topNav.vue';
+import PersonTop from '@/components/personview/personTop.vue';
+import PersonNav from '@/components/personview/personNav.vue';
+import { reactive } from '@vue/reactivity';
+import { useStore } from 'vuex';
 export default {
     components:{
-        TopNav,
+        TopNav,PersonTop,PersonNav
     },
     setup() {
         const userdata = reactive({
             id: 0,
         })
-        const route = useRoute();
-        userdata.id = route.query.userid;
+        const store = useStore();
+        userdata.id = store.state.userid;
         console.log(`personview-userdata.id: ${userdata.id}`);
         return { userdata, }
     }
