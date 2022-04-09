@@ -27,8 +27,8 @@
             
             <div class="signIn" v-if="!data.state">
                 <div class="top">
-                    <span class="username">{{ data.username }}</span>
-                    <span>,的运势</span>
+                    <span class="username">{{ data.username+' ' }}</span>
+                    <span>的运势</span>
                 </div>
                 <div class="fortune"> 
                     <span class="text">{{'§ '+nowSign.fortune+' §'}}</span>
@@ -73,6 +73,7 @@ import { Pagination } from 'swiper';
 import { Navigation } from "swiper";
 import {reactive} from 'vue';
 import axios from 'axios';
+import { useStore } from 'vuex';
 
 export default {
     name:'SwiperNav',
@@ -111,9 +112,23 @@ export default {
         }
         // 用户数据
         const data = reactive({
-            username:'root',
-            state:true,
+            username: 'root',
+            state: true,
+            id: 0,
         })
+
+        const store = useStore();
+        data.state = store.state.punch;
+        data.id = store.state.userid;
+        // 如果不是加载用户信息
+        if(data.id) {
+            axios.get(`http://localhost:5000/api/v1/getId/${data.id}`).then ( res => {
+                console.log(res);
+                let name = res.data.user.name;
+                data.username = name;
+            })
+        }
+
         // 轮播图片
         const images = [
             { pic:require('../../assets/img/home-1.jpg') },
@@ -213,7 +228,10 @@ export default {
         // 签到
         function signIn() {
             // console.log(axios.get('http://localhost:5000'));
-            data.state = !data.state ;
+            // data.state = !data.state ;
+            // 修改全局变量
+            store.dispatch('punch',false);
+            data.state = store.state.punch;
         }
         return {
             modules: [Navigation,Pagination],

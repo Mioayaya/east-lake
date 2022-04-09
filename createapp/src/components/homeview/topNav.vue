@@ -2,7 +2,7 @@
     <div class="topNav">
         <!-- 标题栏左侧 -->
         <div class="topLeft">
-            <router-link :to="{ path:'/',query:{userid:userdata.id} }">
+            <router-link :to="{ path:'/' }">
                 <a class="navbar-brand">康杯研学</a>
             </router-link>
             <div class="iteam">
@@ -24,12 +24,12 @@
                 </div>
                 <div class="avatar">
                     <!-- 默认未登录的头像 -->
-                    <router-link :to="{ path:'/loginview'}" v-if="!userid">
+                    <router-link :to="{ path:'/loginview'}" v-if="!userdata.id">
                         <img :src="img" alt="用户头像">
                     </router-link>
                     <!-- 登录后 -->
-                    <router-link :to="{path:'/personview',query:{userid:userdata.id}}" v-if="userid">
-                        <img :src="img" alt="用户头像">
+                    <router-link :to="{path:'/personview'}" v-if="userdata.id">
+                        <img :src="userdata.avatar" alt="用户头像">
                     </router-link>
                 </div>
             </form>
@@ -43,16 +43,27 @@
 
 <script>
 import { reactive } from '@vue/reactivity';
+import { useStore } from 'vuex';
+import axios from 'axios';
 export default {
     name:'TopNav',
-    props:['userid'],
-    setup(props) {
+    setup() {
         let img = 'https://cdn.luogu.com.cn/upload/usericon/1.png';
-        console.log(`topNav-props.userid: ${props.userid}`);
         const userdata = reactive({
             id:0,
+            avatar: '',
         })
-        userdata.id = props.userid;
+        const store = useStore();
+        userdata.id = store.state.userid;
+        // 如果用户登录、则载入头像
+        if(userdata.id) {
+            axios.get(`http://localhost:5000/api/v1/getId/${userdata.id}`).then ( res => {
+                console.log(res);
+                let avatar = res.data.user.avatar;
+                userdata.avatar = avatar;
+            })
+        }
+        console.log(`topNav-props.userid: ${userdata.id}`);
         return { img,userdata, }
     }
 }
@@ -104,6 +115,7 @@ export default {
                 img {
                     width: 40px;
                     height: 40px;
+                    border-radius: 50%;
                 }
             }
         }

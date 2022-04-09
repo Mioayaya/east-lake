@@ -35,25 +35,21 @@
 <script>
 
 import { reactive, ref } from '@vue/reactivity'
-import { onMounted } from '@vue/runtime-core';
-import { getTest } from '@/api';
 import axios from 'axios';
 import { useRouter, useRoute } from 'vue-router'
+import { useStore } from 'vuex'
 export default {
     name:'LoginBody',
     components:{
         
     },
     setup() {
+        const store=useStore();
         const router = useRouter();
-        const route = useRoute();
         const userSigninRef = ref();
         const signinForm = reactive({
             email:'',
             password:'',
-        })
-        const getdata = reactive({
-
         })
         const rules = reactive({
             email:[{ required:true,message:"邮箱不能为空",trigger:"blur" }],
@@ -67,8 +63,10 @@ export default {
                         console.log('登录成功');
                         console.log(res);
                         let u_id = res.data.user.id;
+                        // 登录成功修改全局变量
+                        store.dispatch('userid',u_id);
                         // console.log(u_id);
-                        router.push({path:'/',query:{id:u_id}});
+                        router.push({path:'/'});
                         // router.push('/');
                     })
                     console.log('submit!')
