@@ -20,6 +20,7 @@ router.post("/register",(req,res) => {
         email:req.body.email,
         password:req.body.password,
         date:now,
+        sign:'这家伙很懒,什么也没写! ',
     }
     // 存之前先检查是否存在
     User.findOne({where:{email:userData.email}}).then( (user) => {

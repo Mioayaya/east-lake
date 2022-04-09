@@ -26,6 +26,9 @@ module.exports = db.sequelize.define('users',{
             type: Sequelize.STRING,
             // default: Sequelize.NOW  // 当前时间
             // 采用js里获取cn time
+        },
+        sign:{
+            type: Sequelize.STRING,
         }
     },{
         timestamps:false, // 不自动加上createdAt和updateAT
