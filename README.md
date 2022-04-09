@@ -1,7 +1,7 @@
 # east lake
 
 # 项目结构
-- createapp 前端采取 html/less/javascript、vue2.0、vue3.0 框架构成
+- createapp 前端采取 html/less/javascript、vue3 框架构成
 - node-app  后端采用 node.js 进行部署
 - 数据库使用 MySql
 
@@ -30,7 +30,13 @@
   - devServer: { proxy: 'http://localhost:5000' }
 - Q2: 使用v-if后 click事件后 组件并没有消失?
   - A2: 使用reactive() 绑定数据即可  
-- 
+- Q3: 在vue3 中如何使用全局变量?
+  - A3: 在store中index.js创建变量,以及方法,在vue中使用
+  ```javascript
+    const store=useStore();
+		store.dispatch('userid',3);
+		const id2 = store.state.userid; 
+  ```
 
 # 安装包
 - node.js
@@ -45,6 +51,8 @@
 - vue3
   - npm install axios 
   - npm install element-plus --save 安装element-plus
+  - npm install vuex
+  - 详情见package.json
 # BUG记录
 Q1: node.js 连接mysql 出现如下报错
 ```
@@ -93,3 +101,6 @@ A: 原因：
   - 路由传递
   - 组件之间传递值
   - 新建查询用户数据api
+- 2022/04/09
+  - 使用全局变量判断用户登录状态
+  - 个人页面搭建
