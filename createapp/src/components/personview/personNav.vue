@@ -4,9 +4,13 @@
             <el-tab-pane label="主页" name="first">
                 <home-list></home-list>
             </el-tab-pane>
-            <el-tab-pane label="我的" name="second">我的</el-tab-pane>
-            <el-tab-pane label="个人档案" name="third">个人档案</el-tab-pane>
-            <el-tab-pane label="个人设置" name="fourth">个人设置</el-tab-pane>
+            <el-tab-pane label="推荐课程" name="second">推荐课程</el-tab-pane>
+            <el-tab-pane label="个人档案" name="third">
+                <personal-file></personal-file>
+            </el-tab-pane>
+            <el-tab-pane label="个人设置" name="fourth">
+                <personal-set></personal-set>
+            </el-tab-pane>
         </el-tabs>
 
     </div>
@@ -14,11 +18,13 @@
 
 <script>
 import HomeList from '@/components/personview/itemlist/homeList.vue'
+import PersonalFile from '@/components/personview/itemlist/personalFile.vue'
+import PersonalSet from '@/components/personview/itemlist/personalSet.vue'
 import { reactive, ref } from '@vue/reactivity'
 export default {
     name:'PersonNav',
     components:{
-        HomeList,
+        HomeList,PersonalFile,PersonalSet
     },
     setup() {
         const activeName = reactive({
@@ -26,7 +32,7 @@ export default {
         })
 
         let handleClick = ( tab )=> {
-            console.log(tab);
+            // console.log(tab);
         }
         return { activeName,handleClick}
     }
