@@ -4,6 +4,7 @@
 - createapp 前端采取 html/less/javascript、vue3 框架构成
 - node-app  后端采用 node.js 进行部署
 - 数据库使用 MySql
+- 技术栈: bootstrap、element-plus、Squelize
 
 # 运行方式
 
@@ -37,6 +38,8 @@
 		store.dispatch('userid',3);
 		const id2 = store.state.userid; 
   ```
+- Q4: 使用elemnet-ui，日期组件的时候，显示是英文，如何转为中文?
+  - A4: 详见: https://blog.csdn.net/weixin_49965735/article/details/121099544
 
 # 安装包
 - node.js
@@ -104,3 +107,8 @@ A: 原因：
 - 2022/04/09
   - 使用全局变量判断用户登录状态
   - 个人页面搭建
+- 2022/04/10
+  - 个人设置提交数据
+  - 优化了签到逻辑
+  - 头像视觉优化
+  - 新增修改api
