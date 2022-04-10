@@ -56,7 +56,7 @@
                     </div>
                 </div>
                 <div class="bottom">
-                    <span>你已经在康杯连续打卡了 1 天</span>
+                    <span>你已经在康杯连续打卡了{{' '+data.punch+' '}}天</span>
                 </div>  
             </div>
         </div>
@@ -115,6 +115,7 @@ export default {
             username: 'root',
             state: true,
             id: 0,
+            punch: 0,
         })
 
         const store = useStore();
@@ -125,7 +126,9 @@ export default {
             axios.get(`http://localhost:5000/api/v1/getId/${data.id}`).then ( res => {
                 console.log(res);
                 let name = res.data.user.name;
+                let punch = res.data.user.punch;
                 data.username = name;
+                data.punch = punch;
             })
         }
 
@@ -232,6 +235,11 @@ export default {
             // 修改全局变量
             store.dispatch('punch',false);
             data.state = store.state.punch;
+            data.punch += 1;
+            // 更改打卡天数
+            axios.post('http://localhost:5000/api/v1/editpunch',data).then ( res => {
+                console.log(res);
+            })
         }
         return {
             modules: [Navigation,Pagination],
