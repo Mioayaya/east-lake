@@ -29,6 +29,34 @@ module.exports = db.sequelize.define('users',{
         },
         sign:{
             type: Sequelize.STRING,
+        },
+        age:{
+            // 年龄
+            type: Sequelize.INTEGER,
+        },
+        birth:{
+            // 生日
+            type: Sequelize.STRING,
+        },
+        sex:{
+            // 性别
+            type: Sequelize.STRING,
+        },
+        character:{
+            // 性格
+            type: Sequelize.STRING,
+        },
+        hobby:{
+            // 爱好
+            type: Sequelize.STRING,
+        },
+        specialty:{
+            // 特长
+            type: Sequelize.STRING,
+        },
+        punch:{
+            // 打卡时间
+            type: Sequelize.INTEGER
         }
     },{
         timestamps:false, // 不自动加上createdAt和updateAT

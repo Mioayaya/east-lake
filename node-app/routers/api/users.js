@@ -20,7 +20,10 @@ router.post("/register",(req,res) => {
         email:req.body.email,
         password:req.body.password,
         date:now,
+        avatar:'https://cdn.luogu.com.cn/upload/usericon/1.png',
         sign:'这家伙很懒,什么也没写! ',
+        punch: 0,
+        sex: '保密',
     }
     // 存之前先检查是否存在
     User.findOne({where:{email:userData.email}}).then( (user) => {
@@ -82,4 +85,64 @@ router.get("/getId/:id",(req,res) => {
     // res.json({msg:id});
 })
 
+// 修改用户签名
+router.post("/editsign",(req,res) => {
+    const userData = {
+        id: req.body.id,
+        sign: req.body.sign,
+    }
+    User.update({sign: userData.sign}, {
+        where: {
+            id: userData.id
+        }
+    }).then( () => {
+        res.json({msg:"修改成功! "})
+    })
+})
+
+// 修改打卡天数
+router.post("/editpunch",(req,res) => {
+    const userData = {
+        id: req.body.id,
+        punch: req.body.punch,
+    }
+    User.update({punch: userData.punch}, {
+        where: {
+            id: userData.id
+        }
+    }).then(() => {
+        res.json({msg:"签到成功! "})
+    })
+})
+
+// 修改用户信息
+router.post("/edit",(req,res) => {
+    const userData = {
+        id: req.body.id,
+        name: req.body.name,
+        age: req.body.age,
+        birth: req.body.birth,
+        avatar: req.body.avatar,
+        sex: req.body.sex,
+        character: req.body.character,
+        hobby: req.body.hobby,
+        specialty: req.body.specialty,
+    }
+    User.update({
+        name:userData.name,
+        age:userData.age,
+        birth:userData.birth,
+        avatar:userData.avatar,
+        sex:userData.sex,
+        character:userData.character,
+        hobby:userData.hobby,
+        specialty:userData.specialty,
+    },{
+        where: {
+            id: userData.id
+        }
+    }).then(() => {
+        res.json({msg:"更新成功! "})
+    })
+})
 module.exports = router;
