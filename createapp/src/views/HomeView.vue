@@ -17,22 +17,6 @@ export default {
 	components: {
 		TopNav,SwiperNav,CourseView,
 	},
-	setup() {
-		const userdata = reactive({
-			id: 0,
-		})
-		// const id = getCurrentInstance()?.appContext.config.globalProperties.$userid;
-		// console.log(`全局变量id: ${id}`);
-		// 全局变量
-		const store=useStore();
-		userdata.id = store.state.userid;
-		console.log(`homeview-userdata.id: ${userdata.id}`);  // userid
-		// 如果是登录后 即userid是存在的 传递给topnav，使得点击头像跳转到个人页面
-		if(userdata.id) {
-			
-		}
-		return {userdata,}
-	}
 }
 </script>
 
