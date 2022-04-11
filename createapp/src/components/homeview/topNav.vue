@@ -8,8 +8,10 @@
             <div class="iteam">
                     <li>智能课件</li>
                     <li>专家讲座</li>
-                    <li>一对一资讯</li>
+                    <li>一对一咨询</li>
+                <router-link :to="{path:'/forumview'}">
                     <li>论坛交流</li>
+                </router-link>
             </div>
         </div>
 
@@ -58,12 +60,12 @@ export default {
         // 如果用户登录、则载入头像
         if(userdata.id) {
             axios.get(`http://localhost:5000/api/v1/getId/${userdata.id}`).then ( res => {
-                console.log(res);
+                // console.log(res);
                 let avatar = res.data.user.avatar;
                 userdata.avatar = avatar;
             })
         }
-        console.log(`topNav-props.userid: ${userdata.id}`);
+        // console.log(`topNav-props.userid: ${userdata.id}`);
         return { img,userdata, }
     }
 }
