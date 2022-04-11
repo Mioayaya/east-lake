@@ -2,6 +2,7 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const app = express();
 const Users = require("./routers/api/users");
+const Forum = require("./routers/api/forum");
 
 // 设置跨域访问
 app.all("*",function(req,res,next){
@@ -26,6 +27,7 @@ app.get("/",(req,res) => {
 app.use(bodyParser.urlencoded({extended:false}));
 app.use(bodyParser.json());
 app.use("/api/v1",Users);
+app.use("/api/v2",Forum);
 
 app.listen(5000,() => {
     console.log("Server is running on port 5000...");
