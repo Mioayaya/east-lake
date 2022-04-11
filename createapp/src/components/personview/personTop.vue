@@ -29,7 +29,7 @@ export default {
         userdata.id = store.state.userid;
         if(userdata.id) {
             axios.get(`http://localhost:5000/api/v1/getId/${userdata.id}`).then ( res => {
-                console.log(res);
+                // console.log(res);
                 let name = res.data.user.name;
                 let sign = res.data.user.sign;
                 let avatar = res.data.user.avatar;
