@@ -117,6 +117,24 @@ router.post("/editpunch",(req,res) => {
 
 // 修改用户信息
 router.post("/edit",(req,res) => {
+    let showid = 0;
+    let char = req.body.character;
+    // 内向 => 心训          1
+    // 感觉 思维 => 言讯     2
+    // 其它 => 体训          3
+    let charArr = [
+        char.slice(0,2),
+        char.slice(2,4),
+        char.slice(4,6),
+        char.slice(6,8),
+    ]
+    if(charArr[0]=='内向') {
+        showid = 1;
+    }else if(charArr[1]=='感觉'||charArr[2]=='思维') {
+        showid = 2;
+    }else {
+        showid = 3;
+    }
     const userData = {
         id: req.body.id,
         name: req.body.name,
@@ -127,6 +145,7 @@ router.post("/edit",(req,res) => {
         character: req.body.character,
         hobby: req.body.hobby,
         specialty: req.body.specialty,
+        showId: showid,
     }
     User.update({
         name:userData.name,
@@ -137,6 +156,7 @@ router.post("/edit",(req,res) => {
         character:userData.character,
         hobby:userData.hobby,
         specialty:userData.specialty,
+        showId:userData.showId,
     },{
         where: {
             id: userData.id
@@ -145,4 +165,5 @@ router.post("/edit",(req,res) => {
         res.json({msg:"更新成功! "})
     })
 })
+
 module.exports = router;

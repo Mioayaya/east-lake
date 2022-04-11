@@ -56,7 +56,10 @@ module.exports = db.sequelize.define('users',{
         },
         punch:{
             // 打卡时间
-            type: Sequelize.INTEGER
+            type: Sequelize.STRING,
+        },
+        showId:{
+            type:Sequelize.STRING,
         }
     },{
         timestamps:false, // 不自动加上createdAt和updateAT
