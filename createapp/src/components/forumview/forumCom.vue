@@ -3,7 +3,7 @@
     <div class="forumcom">    
         <!-- 头像 -->
         <div class="avatar">
-            <img :src="userdata.avater" alt="">
+            <img :src="userdata.avatar" alt="">
         </div>
         <!-- 内容 -->
         <div class="comment">
@@ -16,36 +16,59 @@
         </div>
     </div>
     <!-- 评论列表 -->
-    <div class="test">
-        
-    </div>
+    <forum-item-list></forum-item-list>
 </template>
 
 <script>
+import ForumItemList from '@/components/forumview/forumItemList.vue'
 import { reactive } from '@vue/reactivity'
 import { useStore } from 'vuex'
 import { getCurrentInstance } from 'vue'
 import { ElMessageBox } from 'element-plus'
+import axios from 'axios'
+import { useRoute, useRouter } from 'vue-router'
 export default {
     name:'ForumCom',
+    components:{
+        ForumItemList
+    },
     setup() {
+        const chinaTime = require("china-time");
         const store = useStore();
-        const { appContext } = getCurrentInstance()
+        const { appContext } = getCurrentInstance();
+        // const useroute = useRoute(); 
+        const router = useRouter();
         const userdata = reactive({
-            avater: 'https://cdn.luogu.com.cn/upload/usericon/1.png',
+            avatar: 'https://cdn.luogu.com.cn/upload/usericon/1.png',
             id: 0,
             comment: '',
+            name: '',
+            date: '',
         })
         userdata.id = store.state.userid;
-
+        if(userdata.id) {
+            axios.get(`http://localhost:5000/api/v1/getId/${userdata.id}`).then ( res => {
+                // console.log(res);
+                userdata.avatar = res.data.user.avatar;
+                userdata.name = res.data.user.name;    
+            })
+        }
         let send = () => {
             if(!userdata.id) {
-                ElMessageBox.alert('请先登录', {}, appContext)
-            }else {
-                
-                
+                ElMessageBox.alert('请先登录', {}, appContext);
+            }else if(userdata.comment.trim() === '') {
+                ElMessageBox.alert('你还没有评论!', {}, appContext);
+            }
+            else {
+                let time = chinaTime("YYYY-MM-DD HH:mm:ss")
+                userdata.date = time;
+                axios.post(`http://localhost:5000/api/v2/comment`,userdata);
+                ElMessageBox.alert('发送成功', {}, appContext);
+                // 刷新歌单列表
+                router.push({path:'/forumblankview'});
                 userdata.comment = '';
             }
+            
         }
         return {userdata,send}
     }
