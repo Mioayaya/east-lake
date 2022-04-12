@@ -42,6 +42,8 @@
   - A4: 详见: https://blog.csdn.net/weixin_49965735/article/details/121099544
 - Q5: 使用element-plus, message组件时候，与本地全局变量冲突
   - A5: 将本地全局变量的定义写在最上面
+- Q6: 如何判断用户输入全是空格?
+  - A6: str.trim() 删除字符前和字符后的空格
 
 # 安装包
 - node.js
@@ -82,7 +84,7 @@ A: 原因：
  MySQL8.0.4之前，MySQL的密码认证插件是 “mysql_native_password”，而以后版本使用的是“caching_sha2_password”。所以node会密码认证失败  
  详情见: https://blog.csdn.net/jerryyang_2017/article/details/106294279  
 
-Q1: 
+Q2: 
 ```
 node_modules\express\lib\router\index.js:464
       throw new TypeError('Router.use() requires a middleware function but got a ' + gettype(fn))       
@@ -90,6 +92,7 @@ node_modules\express\lib\router\index.js:464
 
 TypeError: Router.use() requires a middleware function but got a Object
 ```
+A2: 记得加上 module.exports = router;
 A: 
 # 日志
 - 2022/03/30
@@ -128,3 +131,7 @@ A:
   - 完成个人档案
   - 评论页面
   - 后端app.use如何实现两个api路径
+- 2022/04/12
+  - 实现发送评论
+  - 获取评论
+  - 实现评论页面
