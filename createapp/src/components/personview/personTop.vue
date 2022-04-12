@@ -52,7 +52,7 @@ export default {
     display: flex;
     margin-top: 30px;
     margin-left: 13%;
-    background-image: url("https://cdn.luogu.org/images/bg/fe/DSCF0530-shrink.jpg");
+    background-image: url("https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fdesk-fd.zol-img.com.cn%2Ft_s960x600c5%2Fg5%2FM00%2F02%2F05%2FChMkJ1bKyaOIB1YfAAusnvE99Z8AALIQQPgER4AC6y2052.jpg&refer=http%3A%2F%2Fdesk-fd.zol-img.com.cn&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1652362073&t=3680c525fcee6bac373d54e8cd1410fa");
     background-size: cover;
     background-position: center;
     color: #fff;
