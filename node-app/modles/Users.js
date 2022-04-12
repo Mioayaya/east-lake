@@ -56,7 +56,7 @@ module.exports = db.sequelize.define('users',{
         },
         punch:{
             // 打卡时间
-            type: Sequelize.STRING,
+            type: Sequelize.INTEGER,
         },
         showId:{
             type:Sequelize.STRING,

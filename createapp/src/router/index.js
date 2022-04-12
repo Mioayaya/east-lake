@@ -30,6 +30,11 @@ const routes = [
       name: 'forumview',
       component: () => import('../views/ForumView.vue')
     },
+    {
+      path: '/forumblankview',
+      name: 'forumblankview',
+      component: () => import('../views/ForumBlankView.vue')
+    },
 ]
 
 const router = createRouter({

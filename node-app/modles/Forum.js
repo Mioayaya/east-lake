@@ -1,7 +1,7 @@
 const Sequelize = require("sequelize");
 const db = require("../database/db");
 
-module.exports = db.sequelize.define('forum',{
+module.exports = db.sequelize.define('forums',{
         id:{
             type: Sequelize.INTEGER, // int类型
             primaryKey:true,    // 主键
@@ -10,10 +10,19 @@ module.exports = db.sequelize.define('forum',{
         userid:{
             type: Sequelize.INTEGER,
         },
+        username:{
+            type: Sequelize.STRING,
+        },
         comment:{
             type: Sequelize.STRING,
         },
         date:{
+            type: Sequelize.STRING,
+        },
+        desc:{
+            type: Sequelize.STRING,
+        },
+        avatar:{
             type: Sequelize.STRING,
         }
     },{
