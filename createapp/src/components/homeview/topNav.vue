@@ -6,9 +6,13 @@
                 <a class="navbar-brand">康杯研学</a>
             </router-link>
             <div class="iteam">
-                    <li>智能课件</li>
+                    <a href="D:/A_code/Vue/item/create/createapp/src/assets/hello.7z">智能课件</a>        
+                <router-link :to="{path:'/teacherview'}">
                     <li>专家讲座</li>
+                </router-link>                          
+                <router-link :to="{path:'/consultview'}">
                     <li>一对一咨询</li>
+                </router-link>     
                 <router-link :to="{path:'/forumview'}">
                     <li>论坛交流</li>
                 </router-link>

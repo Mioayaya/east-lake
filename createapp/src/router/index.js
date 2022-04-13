@@ -31,6 +31,16 @@ const routes = [
       component: () => import('../views/ForumView.vue')
     },
     {
+      path: '/teacherview',
+      name: 'teacherview',
+      component: () => import('../views/TeacherView.vue')
+    },
+    {
+      path: '/consultview',
+      name: 'consultview',
+      component: () => import('../views/ConsultView.vue')
+    },
+    {
       path: '/forumblankview',
       name: 'forumblankview',
       component: () => import('../views/ForumBlankView.vue')
