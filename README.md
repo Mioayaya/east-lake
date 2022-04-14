@@ -4,7 +4,7 @@
 - createapp 前端采取 html/less/javascript、vue3 框架构成
 - node-app  后端采用 node.js 进行部署
 - 数据库使用 MySql
-- 技术栈: bootstrap、element-plus、Squelize
+- 技术栈: bootstrap、element-plus、Squelize、axios、vue路由
 
 # 运行方式
 
@@ -135,3 +135,8 @@ A:
   - 实现发送评论
   - 获取评论
   - 实现评论页面
+- 2022/04/14
+  - 一对一咨询
+  - 专家讲座
+  - 优化了一些逻辑
+  - 基本到这里就结束了

@@ -3,7 +3,7 @@
         <!-- 标题栏左侧 -->
         <div class="topLeft">
             <router-link :to="{ path:'/' }">
-                <a class="navbar-brand">康杯研学</a>
+                <a class="navbar-brand">康怀研学</a>
             </router-link>
             <div class="iteam">
                     <a href="D:/A_code/Vue/item/create/createapp/src/assets/hello.7z">智能课件</a>        
