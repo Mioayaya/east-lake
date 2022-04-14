@@ -4,7 +4,7 @@
         <div class="swiper-nav">
             <swiper :pagination="true" :navigation="true" :modules="modules" :loop="true" class="mySwiper" >
                 <swiper-slide v-for="(item,i) in images" :key="i">
-                    <img :src="item.pic" alt="图片加载错误">
+                    <img :src="item.pic" type="button"  @click="imgClick(i)" alt="图片加载错误">
                 </swiper-slide>
             </swiper>
         </div>
@@ -134,11 +134,11 @@ export default {
 
         // 轮播图片
         const images = [
-            { pic:require('../../assets/img/home-1.jpg') },
-            { pic:require('../../assets/img/home-3.jpg') },
-            { pic:require('../../assets/img/home-4.jpg') },
-            { pic:require('../../assets/img/home-5.jpg') },
-            { pic:require('../../assets/img/home-2.jpg') },
+            { pic:require('../../assets/img/home-1.jpg'),src:'https://mp.weixin.qq.com/s/QqJEZs_lkYY9Q_YX6LxBhg' },
+            { pic:require('../../assets/img/home-3.jpg'),src:'' },
+            { pic:require('../../assets/img/home-4.jpg'),src:'' },
+            { pic:require('../../assets/img/home-5.jpg'),src:'' },
+            { pic:require('../../assets/img/home-2.jpg'),src:'' },
         ]
         // 日期
         const date = new Date();
@@ -241,6 +241,13 @@ export default {
                 console.log(res);
             })
         }
+        let imgClick = (num) => {
+            // alert(num);
+            if(images[num].src != ''){
+                window.open(images[num].src);
+            }
+            
+        }
         return {
             modules: [Navigation,Pagination],
             signData,
@@ -250,6 +257,7 @@ export default {
             my_date,
             test,
             signIn,
+            imgClick,
         };
     },
 }
