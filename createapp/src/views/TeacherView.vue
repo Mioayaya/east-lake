@@ -1,14 +1,15 @@
 <template>
     <top-nav></top-nav>
-    专家讲座
+    <teach-top></teach-top>
 </template>
 
 <script>
 import TopNav from '@/components/homeview/topNav.vue'
+import TeachTop from '@/components/teacherview/teachTop.vue'
 export default {
     name:'TeacherView',
     components:{
-        TopNav,
+        TopNav,TeachTop
     }
 }
 </script>
