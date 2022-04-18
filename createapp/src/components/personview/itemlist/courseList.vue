@@ -40,7 +40,10 @@
                     </div>
                 </div>
             </div>
+            <!-- 添加报名按钮 -->
+            <button type="button" @click="apply" class="btn btn-info" style="color: aliceblue;">点击报名</button>
         </div>
+
     </div>
 </template>
 
@@ -48,6 +51,7 @@
 import { reactive } from '@vue/reactivity'
 import { useStore } from 'vuex'
 import axios from 'axios'
+import { useRouter } from 'vue-router'
 export default {
     name:'CoureList',
     setup() {
@@ -75,8 +79,13 @@ export default {
             showid: 0,
         })
         const store = useStore();
+        const router = useRouter();
         userdata.id = store.state.userid;
 
+        let apply = () => {
+            router.push('/applyview');
+            // router.push({path:'/applyview',query:{id:'xxx'}});
+        }
         if(userdata.id) {
             axios.get(`http://localhost:5000/api/v1/getId/${userdata.id}`).then( res => {
                 userdata.showid = res.data.user.showId;
@@ -85,7 +94,7 @@ export default {
 
         
         // console.log(listdata);
-        return {userdata,listdata}
+        return {userdata,listdata,apply}
     }
 }
 </script>
