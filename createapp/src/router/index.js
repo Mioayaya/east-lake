@@ -45,6 +45,11 @@ const routes = [
       name: 'forumblankview',
       component: () => import('../views/ForumBlankView.vue')
     },
+    {
+      path: '/applyview',
+      name: 'applyview',
+      component: () => import('../views/ApplyView.vue')
+    },
 ]
 
 const router = createRouter({
