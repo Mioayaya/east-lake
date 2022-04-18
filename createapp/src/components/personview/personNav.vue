@@ -13,6 +13,9 @@
             <el-tab-pane label="个人设置" name="fourth">
                 <personal-set></personal-set>
             </el-tab-pane>
+            <el-tab-pane label="报名课程" name="fifth">
+                <pay-list></pay-list>
+            </el-tab-pane>
         </el-tabs>
 
     </div>
@@ -23,11 +26,12 @@ import HomeList from '@/components/personview/itemlist/homeList.vue'
 import PersonalFile from '@/components/personview/itemlist/personalFile.vue'
 import PersonalSet from '@/components/personview/itemlist/personalSet.vue'
 import CourseList from '@/components/personview/itemlist/courseList.vue'
+import PayList from '@/components/personview/itemlist/payList.vue'
 import { reactive, ref } from '@vue/reactivity'
 export default {
     name:'PersonNav',
     components:{
-        HomeList,PersonalFile,PersonalSet,CourseList,
+        HomeList,PersonalFile,PersonalSet,CourseList,PayList
     },
     setup() {
         const activeName = reactive({
