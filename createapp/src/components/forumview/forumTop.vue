@@ -1,6 +1,5 @@
 <template>
     <div class="forumtop">
-        <span>发表一条友善的评论吧~</span>
     </div>
 </template>
 
@@ -16,7 +15,7 @@ export default {
     width: 1130px;
     height: 280px;
     background-color: white;
-    background-image: url("https://img1.baidu.com/it/u=4009750993,4249493204&fm=253&fmt=auto&app=120&f=JPEG?w=1280&h=800");
+    background-image: url("../../assets/pic/cheat.jpg");
     background-size: cover;
     background-position: center;
     margin-top: 30px;

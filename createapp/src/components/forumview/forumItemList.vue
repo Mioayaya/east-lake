@@ -21,17 +21,22 @@
 <script>
 import { reactive } from '@vue/reactivity'
 import axios from 'axios'
+import { onMounted } from '@vue/runtime-core'
 export default {
     name:'ForumItemList',
     setup() {
         const comments = reactive({
             item:[],
         })
-        axios.get('http://localhost:5000/api/v2/getcomments').then ( res => {
+        // axios.get('http://localhost:5000/api/v2/getcomments').then ( res => {
+        //     comments.item = res.data;
+        //     // console.log(comments.item);
+        // })
+        onMounted( async () => {
+            let res = await axios.get('http://localhost:5000/api/v2/getcomments');
             comments.item = res.data;
-            // console.log(comments.item);
+            // console.log(comments);
         })
-
         return { comments}
     }
 }

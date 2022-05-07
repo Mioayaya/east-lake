@@ -1,20 +1,20 @@
 <template>
     <div class="applycontent">
         <div class="sport">
-            <span>体训</span>
+            <span>劳动美育课(收费)</span>
             <el-scrollbar>
-                <div class="choicelist scrollbar-demo-item" v-for="(item,i) in datalist.sport" :key="item.id" 
+                <div class="choicelist scrollbar-demo-item" v-for="(item,i) in datalist.aesthetic" :key="item.id" 
                 :style="{background:(i % 2 ? '#f5f7fa':'#c1d6f8')}">
                     <span class="course">{{item.title}}</span>
                     <el-button-group class="button">
-                        <el-button type="primary" plain @click="addlist('sport',i)">添加</el-button>
-                        <el-button type="danger" plain @click="delist('sport',i)">删除</el-button>
+                        <el-button type="primary" plain @click="addlist('aesthetic',i)">添加</el-button>
+                        <el-button type="danger" plain @click="delist('aesthetic',i)">删除</el-button>
                     </el-button-group>
                 </div>
             </el-scrollbar>
         </div>
         <div class="conersation">
-            <span>言训</span>
+            <span>言训(免费)</span>
             <el-scrollbar>
                 <div class="choicelist scrollbar-demo-item" v-for="(item,i) in datalist.conversion" :key="item.id" 
                 :style="{background:(i % 2 ? '#f5f7fa':'#c1d6f8')}">
@@ -27,7 +27,7 @@
             </el-scrollbar>          
         </div>
         <div class="heart">
-            <span>心训</span>
+            <span>心训(免费)</span>
             <el-scrollbar>
                 <div class="choicelist scrollbar-demo-item" v-for="(item,i) in datalist.heart" :key="item.id" 
                 :style="{background:(i % 2 ? '#f5f7fa':'#c1d6f8')}">
@@ -74,14 +74,12 @@ export default {
         const formLabelWidth = '140px';
         const { appContext } = getCurrentInstance();
         const datalist = reactive({
-            sport:[
-                {title:'篮球场',value:false},
-                {title:'体育馆',value:false},
-                {title:'攀岩场',value:false},
-                {title:'竹木科技馆',value:false},
-                {title:'百草园',value:false},
-                {title:'中国茶谣馆',value:false},
-                {title:'农作园',value:false},
+            aesthetic:[
+                {title:'香榧篇',value:false},
+                {title:'中草药篇',value:false},
+                {title:'桃花纸非遗篇',value:false},
+                {title:'果园篇',value:false},
+                {title:'烹饪篇',value:false}
             ],
             conversion:[
                 {title:'法律辩论赛',value:false},

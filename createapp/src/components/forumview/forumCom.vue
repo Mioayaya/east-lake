@@ -23,10 +23,12 @@
 import ForumItemList from '@/components/forumview/forumItemList.vue'
 import { reactive } from '@vue/reactivity'
 import { useStore } from 'vuex'
-import { getCurrentInstance } from 'vue'
+import { getCurrentInstance, onMounted } from 'vue'
 import { ElMessageBox } from 'element-plus'
 import axios from 'axios'
 import { useRoute, useRouter } from 'vue-router'
+import { create } from 'lodash'
+import { ajaxUpload } from 'element-plus/es/components/upload/src/ajax'
 export default {
     name:'ForumCom',
     components:{
@@ -44,6 +46,9 @@ export default {
             comment: '',
             name: '',
             date: '',
+        });
+        const comments = reactive({
+            item:[],
         })
         userdata.id = store.state.userid;
         if(userdata.id) {
@@ -64,12 +69,23 @@ export default {
                 userdata.date = time;
                 axios.post(`http://localhost:5000/api/v2/comment`,userdata);
                 ElMessageBox.alert('发送成功', {}, appContext);
+                comments.item.push(userdata);
+                console.log(comments);
+                // axios.get('http://localhost:5000/api/v2/getcomments').then(res => {
+                //     comments.item = res.data;
+                //     console.log(comments);
+                // })
                 // 刷新歌单列表
                 router.push({path:'/forumblankview'});
                 userdata.comment = '';
             }
             
         }
+        onMounted( async () => {
+            let res = await axios.get('http://localhost:5000/api/v2/getcomments');
+            comments.item = res.data;
+            // console.log(comments);
+        })
         return {userdata,send}
     }
 }
