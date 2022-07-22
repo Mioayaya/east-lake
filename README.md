@@ -6,8 +6,6 @@
 - 数据库使用 MySql
 - 技术栈: bootstrap、element-plus、Squelize、axios、vue路由
 
-# 运行方式
-
 # 问题记录
 - Q1: 如何实现前后端的数据交互?  
   - A1: 解决跨域问题
@@ -45,21 +43,6 @@
 - Q6: 如何判断用户输入全是空格?
   - A6: str.trim() 删除字符前和字符后的空格
 
-# 安装包
-- node.js
-  - npm install body-parser (post相关)
-  - npm install express 
-  - npm install mysql (数据库依赖)
-  - npm install mysql2 
-  - npm install sequelize (mysql)
-  - npm install bcryptjs -s 对密码加密
-  - npm install china-time -s 返回北京时间
-  - npm install jsonwebtoken 安装jwt
-- vue3
-  - npm install axios 
-  - npm install element-plus --save 安装element-plus
-  - npm install vuex
-  - 详情见package.json
 # BUG记录
 Q1: node.js 连接mysql 出现如下报错
 ```
